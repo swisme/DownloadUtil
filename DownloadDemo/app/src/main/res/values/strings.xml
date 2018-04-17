@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DownloadDemo</string>
+    <string name="dialog_permission_title">Need Permissions</string>
+    <string name="dialog_permission_confirm">I agree</string>
+    <string name="toast_permission_denied">Permission Denied</string>
+    <string name="dialog_permission_nerver_ask_cancel">Cancel</string>
+    <string name="dialog_permission_nerver_ask_confirm">Confirm</string>
+    <string name="dialog_permission_sdcard_message">Needs Permission</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sw.downloaddemo.ui.MainActivity">
+
+    <EditText
+        android:id="@+id/et_url_main"
+        android:layout_width="368dp"
+        android:layout_height="50dp"
+        android:hint="请输入下载url..." />
+
+    <TextView
+        android:id="@+id/tv_progress_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toLeftOf="@id/cl_root"
+        app:layout_constraintRight_toRightOf="@id/cl_root"
+        app:layout_constraintTop_toBottomOf="@id/et_url_main" />
+
+    <TextView
+        android:id="@+id/tv_download_main"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="Download"
+        app:layout_constraintLeft_toLeftOf="@id/cl_root"
+        app:layout_constraintRight_toRightOf="@id/cl_root"
+        app:layout_constraintTop_toBottomOf="@id/tv_progress_main" />
+
+</android.support.constraint.ConstraintLayout>
