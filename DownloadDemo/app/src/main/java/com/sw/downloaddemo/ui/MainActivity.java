@@ -15,6 +15,7 @@ import com.sw.downloaddemo.loader.DownLoadManager;
 import com.sw.downloaddemo.util.PermissionChecker;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +28,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        downloadList();
+    }
+
+    private void downloadList() {
+        ArrayList<String> urlList = new ArrayList<>();
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/PjajyDysZt.mp4");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/tZ2cwktnMy.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/pHepQrmR54.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/84dsaA3nda.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/G565WErn6k.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/YSnYCpxEPx.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/ATMfFy3php.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/Dd7EMzjtsQ.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/5adydD7J5J.mp3");
+        urlList.add("http://edit.2or3m.com/subject/php/20180111/285/4xateChhTY.mp4");
+        DownLoadManager.getInstance().download(Environment.getExternalStorageDirectory().getAbsolutePath() + "/2or3m", urlList);
     }
 
     private void initView() {
