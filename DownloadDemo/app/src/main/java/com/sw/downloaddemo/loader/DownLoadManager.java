@@ -30,7 +30,7 @@ import okio.Okio;
 
 public class DownLoadManager {
     private static DownLoadManager mDownloadManger;
-
+    private static final String TAG = "DownloadManager";
     private static boolean mIsMultiTask;//是否是并发操作
     private static List<DownloadBean> mDownloadList;//下载队列
     private static int MAX_CONCURRENT_COUNT = 3;//最大下载并发量
@@ -180,9 +180,9 @@ public class DownLoadManager {
                 }
                 try {
                     mLock.notifyAll();
-                    Log.e("zhqw", "...................notify " + downloadThreadId + " mCurrentDownloadCount : " + mCurrentDownloadCount);
+                    Log.e(TAG, "...................notify " + downloadThreadId + " mCurrentDownloadCount : " + mCurrentDownloadCount);
                 } catch (Exception e) {
-                    Log.e("zhqw", "...................notify Exception" + downloadThreadId + e.getMessage());
+                    Log.e(TAG, "...................notify Exception" + downloadThreadId + e.getMessage());
                 }
             }
         }
@@ -213,10 +213,10 @@ public class DownLoadManager {
                     mDownloadList.get(downloadThreadId).setLocalPaht("");
                     mCurrentDownloadCount--;
                     try {
-                        Log.e("zhqw", "...................notify " + downloadThreadId + " mCurrentDownloadCount : " + mCurrentDownloadCount);
+                        Log.e(TAG, "...................notify " + downloadThreadId + " mCurrentDownloadCount : " + mCurrentDownloadCount);
                         mLock.notifyAll();
                     } catch (Exception ex) {
-                        Log.e("zhqw", "...................notify Exception " + downloadThreadId + ex.getMessage());
+                        Log.e(TAG, "...................notify Exception " + downloadThreadId + ex.getMessage());
                     }
                 }
             }
@@ -228,7 +228,7 @@ public class DownLoadManager {
                     //if you don't need this method, don't override this methd. It isn't an abstract method, just an empty method.
                     @Override
                     public void onUIProgressStart(long totalBytes) {
-                        Log.e("zhqw", "start " + downloadThreadId);
+                        Log.e(TAG, "start " + downloadThreadId);
                         super.onUIProgressStart(totalBytes);
                         if (mDownloadListener != null) {
                             mDownloadListener.onDownloadStart(totalBytes);
@@ -246,7 +246,7 @@ public class DownLoadManager {
                     @Override
                     public void onUIProgressFinish() {
                         super.onUIProgressFinish();
-                        Log.e("zhqw", "finish " + downloadThreadId);
+                        Log.e(TAG, "finish " + downloadThreadId);
                         //缓存路径
                         ACache.get(MainApplication.getContext()).put(cacheKey, cacheDir + "/" + fileName);
                         synchronized (mLock) {
@@ -256,9 +256,9 @@ public class DownLoadManager {
                             }
                             try {
                                 mLock.notifyAll();
-                                Log.e("zhqw", "...................notify " + downloadThreadId + " mCurrentDownloadCount :  " + mCurrentDownloadCount);
+                                Log.e(TAG, "...................notify " + downloadThreadId + " mCurrentDownloadCount :  " + mCurrentDownloadCount);
                             } catch (Exception e) {
-                                Log.e("zhqw", "...................notify Exception" + downloadThreadId + e.getMessage());
+                                Log.e(TAG, "...................notify Exception" + downloadThreadId + e.getMessage());
                             }
                         }
                         if (mDownloadListener != null) {
@@ -302,10 +302,10 @@ public class DownLoadManager {
                     synchronized (mLock) {
                         while (mCurrentDownloadCount >= MAX_CONCURRENT_COUNT) {
                             try {
-                                Log.e("zhqw", "...................wait");
+                                Log.e(TAG, "...................wait");
                                 mLock.wait();
                             } catch (Exception e) {
-                                Log.e("zhqw", "................... wait " + e.getMessage());
+                                Log.e(TAG, "................... wait " + e.getMessage());
                             }
                         }
                         if (mCurrentDownloadIndex < mDownloadList.size() - 1) {
